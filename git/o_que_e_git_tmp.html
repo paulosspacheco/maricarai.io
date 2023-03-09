@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>o_que_e_git.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="span-id%22topo%22spano-que-%C3%A9-git-a-href%22modelo03html%22-target%22blank%22-title%22pressione-aqui-para-expandir-este-documento-em-nova-aba%22-%E2%86%B5aa-href%22modelo03pdf%22-target%22blank%22-title%22pressione-aqui-para-visualizar-o-pdf-deste-documento-em-nova-aba%22%E2%84%98a"><span id="topo"><span>O que é git? <a href="modelo03.html" target="_blank" title="Pressione aqui para expandir este documento em nova aba." >↵</a><a href="modelo03.pdf" target="_blank" title="Pressione aqui para visualizar o PDF deste documento em nova aba.">℘</a></h1>
+<h2 id="1-index"><strong>1. INDEX</strong></h2>
+<hr>
+<ol>
+<li>
+<p><a href="#id_resumo">Resumo do conteúdo</a></p>
+</li>
+<li>
+<p><strong>Introdução</strong></p>
+<ol>
+<li><a href="#id_objetivo">Objetivo.</a></li>
+<li><a href="#id_pre_requisitos">Pre-requisitos.</a></li>
+<li><a href="#id_beneficios">Benefícios.</a></li>
+<li><a href="#id_desvantagens">Desvantagens.</a></li>
+</ol>
+</li>
+<li>
+<p><a href="#id_Conteudo"><strong>Conteúdo estudado.</strong></a></p>
+<ol>
+<li><a href="#id_assunto01">Instalando do git no linux derivados do debian</a></li>
+<li><a href="#id_assunto02">Criando repositório git</a></li>
+<li><a href="#id_assunto03">Adicionando documento ao repositório</a></li>
+<li><a href="#id_assunto04">Listando o status do repositório</a></li>
+<li><a href="#id_assunto05">Adicionando modificações ao repositório</a></li>
+<li><a href="#id_assunto06">Ignorando arquivos no repositório git</a></li>
+<li><a href="#id_assunto07">Configurando git para enviar para o github</a></li>
+<li><a href="#id_assunto08">Configurando git para enviar para o gitlab</a></li>
+<li><a href="#id_assunto09">Assunto 09</a></li>
+<li><a href="#id_assunto10">Assunto 10</a></li>
+</ol>
+</li>
+<li>
+<p><a href="#id_referencias"><strong>Referências globais.</strong></a></p>
+</li>
+<li>
+<p><a href="#id_historico"><strong>Histórico.</strong></a></p>
+</li>
+</ol>
+<h2 id="2-conte%C3%BAdo"><strong>2. CONTEÚDO</strong></h2>
+<hr>
+<ol>
+<li>
+<p><span id="id_resumo"><span><strong>Resumo do conteúdo:</strong></p>
+<ol>
+<li>Descreve um resumo de como foi feito esse documento com as facilidade encontradas para produzi-lo e dificuldade encontrada.</li>
+</ol>
+</li>
+<li>
+<p><strong>Introdução</strong></p>
+<ol>
+<li>
+<p><span id="id_objetivo"><span><strong>Objetivo:</strong></p>
+<ol>
+<li>
+<p>O git é um programa criado por <strong>Linus Torvalds</strong> cujo objetivo é controlar as versões de múltiplos documentos, podendo ser programas de computador ou outro documento qualquer digital.</p>
+</li>
+<li>
+<p>O objetivo principal é poder compartilhar as alterações criadas por vários programadores e um administrador fica responsável pelo merge de todas as versões  para produzir uma versão única com todas as alterações.</p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id="id_pre_requisitos"></span><strong>Pre-requisitos:</strong></p>
+<ol>
+<li>
+<p>Ter linux ou windows com uma versão acima de 2003 instalado..</p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id="id_beneficios"></span><strong>Benefícios:</strong></p>
+<ol>
+<li>
+<p>Espero poder controlar as versões dos produtos que forem produzidos de hoje em diante, bem como voltar no tempo caso seja necessário.</p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id="id_desvantagens"></span><strong>Desvantagens</strong>.</p>
+<ol>
+<li>
+<p>Não sei ainda....</p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_Conteudo></span><strong>Conteúdo estudado</strong></p>
+<ol>
+<li>
+<p><span id=id_assunto01></span><strong>Instalando git no linux e derivados do debian</strong></p>
+<ol>
+<li>
+<p>Para instalar no linux distribuição baseada em Debian como o Ubuntu, Linux Mint, etc use o apt-get:.</p>
+<pre class="hljs"><code><div>   sudo apt-get install git-all
+</div></code></pre>
+</li>
+<li>
+<p>Execute os seguintes comandos para fazer com que o git saiba seu nome e endereço de e-mail:</p>
+<pre class="hljs"><code><div>
+  git config --global user.name <span class="hljs-string">"Seu Nome"</span>
+  git config --global user.email <span class="hljs-string">"seu_email@qualquercoisa.com"</span>
+
+</div></code></pre>
+</li>
+<li>
+<p>O git funcionando no linux é preciso que os comandos abaixo sejam executado para indicar o término de linha nos arquivos textos:</p>
+<pre class="hljs"><code><div>
+   git config --global core.autocrlf input
+   git config --global core.safecrlf warn
+
+</div></code></pre>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto02></span><strong>Criando repositório git</strong></p>
+<ol>
+<li>
+<p>Use o comando <strong>git init</strong> para criar o repositório na pasta atual.</p>
+<ol>
+<li>
+<p>Código shellscript</p>
+<pre class="hljs"><code><div>
+   git init
+   <span class="hljs-comment">#Initialized empty Git repository in /Users/alex/Documents/Presentations/githowto/auto/hello/.git/</span>
+
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>Use o comando <strong>git init</strong> para criar o repositório na pasta diferente da pasta atual.</p>
+<ol>
+<li>
+<p>Exemplo</p>
+<pre class="hljs"><code><div>  
+ <span class="hljs-built_in">cd</span> ~/meuProjeto                 
+ git init --separate-git-dir ~/meuProjeto.git
+
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://githowto.com/pt-BR/create_a_project">Crie um repositório</a></li>
+<li><a href="https://rakhesh.com/coding/how-to-move-separate-the-git-folder-out-of-your-working-tree/">Como mover/separar a pasta .git da sua árvore de trabalho</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto03></span><strong>Adicionando documento ao repositório local</strong></p>
+<ol>
+<li>
+<p>Suponha você queira adicionar todo o conteúdo na pasta corrente  *.*  ao repositório então:</p>
+<ol>
+<li>
+<p>Código shellscript</p>
+<pre class="hljs"><code><div>   git init 
+   git add *.*
+   git commit -m <span class="hljs-string">"Primeiro repositório da pasta local"</span> 
+   git branch -M main                  
+
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://www.atlassian.com/br/git/tutorials/setting-up-a-repository/git-init">git init</a></li>
+<li><a href="https://git-scm.com/docs/git/pt_BR">https://git-scm.com/docs/git/en</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init#:~:text=The%20git%20init%20command%20creates,run%20in%20a%20new%20project.">git init</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto04></span><strong>Listando o status do repositório</strong></p>
+<ol>
+<li>
+<p>Use o comando <strong>git status</strong> para checar o estado atual do repositório.</p>
+<ol>
+<li>
+<p>Código shell</p>
+<pre class="hljs"><code><div>   <span class="hljs-built_in">cd</span> /testGit <span class="hljs-comment"># A pasta /testGit precisa ter executado o comando git init antes de saber o status</span>
+
+   git status
+
+   <span class="hljs-comment"># Resultado: On branch master nothing to commit (working directory clean)</span>
+
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://githowto.com/pt-BR/checking_status">Status do repositório</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto05></span><strong>Adicionando modificações ao repositório</strong></p>
+<ol>
+<li>
+<p>Altere qualquer coisa no arquivo <strong>index.html</strong>, em seguida execute os comandos abaixo:</p>
+<ol>
+<li>
+<p>Código ShellScript</p>
+<pre class="hljs"><code><div>   <span class="hljs-comment"># Adicionando o arquivo modificado ao repositório</span>
+   git add index.html
+
+   <span class="hljs-comment"># obtendo o status atual do repositório</span>
+   git status
+
+   <span class="hljs-comment"># Tornando a alteração definitiva:</span>
+   git commit -m <span class="hljs-string">"Alterado o título de index.html"</span>
+
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://githowto.com/pt-BR/staging_changes">Adicionando modificações</a></li>
+<li><a href="https://githowto.com/pt-BR/changes_not_files">Exemplo de várias alterações e vários commits</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto06></span><strong>Ignorando arquivos no repositório git</strong></p>
+<ol>
+<li>
+<p>Você pode criar um arquivo <a href="https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files"><strong>.gitignore</strong></a> no diretório raiz do seu repositório para informar ao <strong>Git</strong> quais arquivos e diretórios ignorar ao fazer um commit. Para compartilhar as regras de ignorar com outros usuários que clonam o repositório, envie o arquivo <strong>.gitignore</strong> para o seu repositório.</p>
+</li>
+<li>
+<p>Exemplo de arquivo <strong>.gitignore</strong>.</p>
+<ol>
+<li>
+<p>.gitignore</p>
+<pre class="hljs"><code><div>
+   <span class="hljs-comment"># Compiled source #</span>
+   <span class="hljs-comment">###################</span>
+   *.com
+   *.class
+   *.dll
+   *.exe
+   *.o
+   *.so   
+               
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files">Configurando arquivos ignorados para um único repositório</a></li>
+<li><a href="https://github.com/github/gitignore">Uma coleção de <strong>.gitignore</strong> modelos</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto07></span><strong>Configurando git para enviar para o github</strong></p>
+<ol>
+<li>
+<p>Para <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">conectar-se ao github.com</a> é necessário criar um chave do protocolo SSH (Secure Shell Protocol), que fornece um canal seguro em uma rede não segura da seguinte forma:</p>
+<pre class="hljs"><code><div>   
+   <span class="hljs-comment"># Gerando uma chave ssh na pasta ~/ssh</span>
+   ssh-keygen -t ed25519 -C <span class="hljs-string">"seu_email@qualquercoisa.com"</span>           
+
+   <span class="hljs-comment"># Adicionando sua chave SSH ao agente ssh</span>
+   <span class="hljs-built_in">eval</span> <span class="hljs-string">"<span class="hljs-variable">$(ssh-agent -s)</span>"</span>
+
+   <span class="hljs-comment"># Adicione sua chave privada SSH ao agente ssh. </span>
+   <span class="hljs-comment"># Se você criou sua chave com um nome diferente ou se está adicionando uma </span>
+   <span class="hljs-comment"># chave existente com um nome diferente, substitua id_ed25519 no comando </span>
+   <span class="hljs-comment"># pelo nome de seu arquivo de chave privada:</span>
+
+   ssh-add ~/.ssh/id_ed25519
+
+</div></code></pre>
+<ol>
+<li>NOTA:
+<ol>
+<li>
+<p>Se você estiver usando um sistema legado que não suporta o algoritmo Ed25519, use:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">
+  $</span><span class="bash"> ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">"paulosspacheco"</span></span>
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/paulosspacheco/.ssh/id_rsa): chave_github
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in chave_github
+Your public key has been saved in chave_github.pub
+The key fingerprint is:
+SHA256:Z4er4ChOuaNig9fX4Cy9eGu+N8xvJg7Auzu9wxBRa5I paulosspacheco
+The key's randomart image is:
++---[RSA 4096]----+
+|     ..          |
+|    .. .         |
+|    E.o          |
+|   ..o     .     |
+|    o.  S + .    |
+|   ..o.  o o     |
+|. o..Bo=  .      |
+|o++.+=@oB.o      |
+|+++o=OBOo*.      |
++----[SHA256]-----+
+
+</div></code></pre>
+</li>
+<li>
+<p>Dependendo do seu ambiente, pode ser necessário usar um comando diferente.</p>
+<ol>
+<li>Por exemplo, pode ser necessário usar o acesso root executando <strong>sudo -s -H</strong> antes de iniciar o <strong>ssh-agent</strong> ou pode ser necessário usar exec <strong>ssh-agent bash</strong> ou <strong>exec ssh-agent zsh</strong> para executar o <strong>ssh-agent</strong>.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Entre no <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">github</a> para adicionar uma nova chave SSH à sua conta GitHub.</p>
+</li>
+<li>
+<p>Criando repositório no github e configurando a máquina cliente:</p>
+<ol>
+<li>
+<p>Suponha que o grupo seja maricarai e o projeto seja maricarai então:</p>
+<pre class="hljs"><code><div>
+   <span class="hljs-built_in">echo</span> <span class="hljs-string">"# rtl"</span> &gt;&gt; readme.md
+   git init 
+   git add readme.md               
+   git commit -m <span class="hljs-string">"first commit"</span>
+   git branch -M main
+   git remote add origin https://github.com/maricarai/naricarai.
+   git push -u origin main                  
+   
+
+</div></code></pre>
+<ol>
+<li><strong>ATENÇÃO</strong>:
+<ol>
+<li>
+<p><a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/">Requisitos de autenticação de token para operações Git</a>.</p>
+<ol>
+<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">Criação de um token de acesso pessoal</a></li>
+<li><a href="https://github.com/settings/tokens/new">Novo token de acesso pessoal</a></li>
+</ol>
+</li>
+<li>
+<p>Obs: Recomendamos que cada repositório inclua um README , LICENSE e .gitignore.</p>
+<pre class="hljs"><code><div></div></code></pre>
+<ol>
+<li>Respostas a pergunta: O que deve ficar em <strong>.gitignore</strong>?
+<ol>
+<li><a href="https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files">Configurando arquivos ignorados para todos os repositórios em seu computador</a>.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Configurando git para enviar para o  github</strong></p>
+<ol>
+<li>Eureca!!! a forma mais prática que encontrei para usar o github e vscode foi:
+<ol>
+<li>
+<p>Entrei no github e criei um projeto;</p>
+</li>
+<li>
+<p>Na pasta do projeto clonei o repositório clonado com o seguinte comando:</p>
+<pre class="hljs"><code><div>  
+  git clone git@github.com:paulosspacheco/maricarai.git
+  cd ./maricarai
+  code .
+ 
+</div></code></pre>
+</li>
+<li>
+<p>No vscode instalei a extensão <strong>GitLens — Git supercharged</strong></p>
+<ol>
+<li>Essa extensão habilita o vscode a reconhecer o repositório remoto.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://docs.github.com/en/get-started">get-started</a></li>
+<li><a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git">Instalando o Git</a></li>
+<li><a href="https://githowto.com/pt-BR/setup">Preparação</a></li>
+<li><a href="https://github.com/new">Criando novo projeto no github</a></li>
+<li><a href="https://github.com/settings/tokens/new">Novo token de acesso pessoal</a></li>
+<li><a href="https://www.youtube.com/watch?v=HIqyLRKv-YE">Como trabalhar com Git e GitHub no VsCode | Tutorial</a></li>
+<li><a href="https://www.youtube.com/watch?v=MbgR1rIDuy4">VsCode - [Extensão GitLens], Histórico do GITHUB, no vscode, commit, Linha do código editado (#201)</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto08></span><strong>Configurando git para enviar para o  gitlab</strong></p>
+<ol>
+<li>
+<p>Descrição do conteúdo.</p>
+</li>
+<li>
+<p><strong>Exemplo do Configurando git para enviar para o  gitlab</strong>.</p>
+<ol>
+<li>
+<p>Descrição do exemplo</p>
+<pre class="hljs"><code><div></div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="https://gitlab.com/itms3/learn-gitlab/-/learn_gitlab">Aprenda GitLab</a></li>
+<li><a href="https://www.youtube.com/watch?v=un8CDE8qOR8&amp;t=38s"> COMO USAR O GIT E O GITLAB NA PRÁTICA</a></li>
+<li><a href="https://docs.gitlab.com/ee/user/markdown.html">Markdown com sabor do GitLab</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto09></span><strong>Assunto 09</strong></p>
+<ol>
+<li>
+<p>Descrição do conteúdo.</p>
+</li>
+<li>
+<p><strong>Exemplo do assunto 09</strong>.</p>
+<ol>
+<li>
+<p>Descrição do exemplo</p>
+<pre class="hljs"><code><div></div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="link">title</a></li>
+<li><a href="link">title</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_assunto10></span><strong>Assunto 10</strong></p>
+<ol>
+<li>
+<p>Descrição do conteúdo.</p>
+</li>
+<li>
+<p><strong>Exemplo do assunto 10</strong>.</p>
+<ol>
+<li>
+<p>Descrição do exemplo</p>
+<pre class="hljs"><code><div></div></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Referências:</strong></p>
+<ol>
+<li><a href="link">title</a></li>
+<li><a href="link">title</a></li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id=id_referencias></span><strong>REFERÊNCIAS GLOBAIS</strong></p>
+<ol>
+<li>
+<p><a href="#1">Site oficial para produzir este documento</a></p>
+</li>
+<li>
+<p><a href="https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-markdown#open">Guia básico de Markdown</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=UbJLOn1PAKw&amp;t=5s">Vídeo aula sobre o github</a></p>
+</li>
+<li>
+<p><a href="##">#</a></p>
+</li>
+<li>
+<p><a href="##">#</a></p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ol>
+</li>
+<li>
+<p><span id="id_historico"><span><strong>HISTÓRICO</strong></p>
+<ol>
+<li>
+<p>dd/mm/2021 <!--TODO: HISTÓRICO --></p>
+<ul>
+<li><text onclick="goBack()">[🔙]</text></li>
+</ul>
+</li>
+<li>
+<p>dd/mm/2021 <!--FIXME: Falta fazer os item abaixo: --></p>
+<ul>
+<li>
+<p><input type="checkbox" id="checkbox0"><label for="checkbox0">Criar este documento baseado no modelo03.md ;</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox1"><label for="checkbox1">Escrever tópico Objetivos;</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox2"><label for="checkbox2">Escrever tópico Pre-requisitos</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox3"><label for="checkbox3">Escrever tópico Benefícios</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox4"><label for="checkbox4">Escrever tópico desvantagens</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox5"><label for="checkbox5">Escrever tópico Conteúdo</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox6"><label for="checkbox6">Escrever tópico Exemplos</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox7"><label for="checkbox7">Escrever tópico Referências</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox8"><label for="checkbox8">Atualizar o histórico deste documento.</label></p>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox9"><label for="checkbox9">Testar este documento depois após uma semana de concluído.</label></p>
+</li>
+<li>
+<p><text onclick="goBack()">[🔙]</text></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p><a href="#topo" title="Retorna ao topo">🔝🔝</a></p>
+ <script>    function goBack() {    window.history.back()}</script>
+
+</body>
+</html>
